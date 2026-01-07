@@ -43,7 +43,7 @@ library(NRWgauges)
 
 ## Basic example: EGLV
 
-### Get gauge metadata, locations and latest measurements
+### Get gauge locations and metadata
 
 ```{r}
 # fetch all available gauges
