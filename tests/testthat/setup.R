@@ -1,6 +1,6 @@
 ## run before tests, but not loaded via `load_all()` and not installed with package
 
-library(httptest)
+library("httptest")
 
 # `get_eglv_gauges()` ---------------------------------------------------------------
 # capture_requests({

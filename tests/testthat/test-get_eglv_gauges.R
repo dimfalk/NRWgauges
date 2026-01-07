@@ -11,20 +11,15 @@ with_mock_api({
 
     x <- get_eglv_gauges()
 
-    expect_equal(dim(x), c(112, 13))
+    expect_equal(dim(x), c(122, 7))
   })
 
   test_that("Column names are as expected.", {
 
-    cnames <- c("id", "name", "waterbody", "current_trend",
+    cnames <- c("id", "name", "waterbody",
                 "has_current_waterlevel",
-                "latest_waterlevel_datetime",
-                "latest_waterlevel_value",
-                "latest_waterlevel_current_alertlevel",
                 "has_current_discharge",
-                "latest_discharge_datetime",
-                "latest_discharge_value",
-                "latest_discharge_current_alertlevel",
+                "has_current_velocity",
                 "geometry")
 
     x <- get_eglv_gauges()
@@ -34,9 +29,8 @@ with_mock_api({
 
   test_that("Types are as expected.", {
 
-    dtype <- c("character", "character", "character", "character",
-               "logical", "double", "double", "integer",
-               "logical", "double", "double", "logical",
+    dtype <- c("character", "character", "character",
+               "logical", "logical", "logical",
                "list")
 
     x <- get_eglv_gauges()
