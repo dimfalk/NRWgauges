@@ -15,7 +15,18 @@ with_mock_api({
 
     x <- get_eglv_gauges() |> dplyr::filter(id == "10103")
 
-    meas <- get_eglv_measurements(x, discharge = TRUE)
+    meas <- get_eglv_measurements(x, par = "discharge")
+
+    expect_equal(class(meas), "list")
+
+    expect_s3_class(meas[[1]], c("xts", "zoo"))
+  })
+
+  test_that("Output class is as expected.", {
+
+    x <- get_eglv_gauges() |> dplyr::filter(id == "16137")
+
+    meas <- get_eglv_measurements(x, par = "velocity")
 
     expect_equal(class(meas), "list")
 
@@ -52,7 +63,7 @@ with_mock_api({
 
     x <- get_eglv_gauges() |> dplyr::filter(id == "10103")
 
-    meas <- get_eglv_measurements(x, discharge = TRUE)
+    meas <- get_eglv_measurements(x, par = "discharge")
 
     expect_equal(attr(meas[[1]], "STAT_ID"), "10103")
 
@@ -61,15 +72,26 @@ with_mock_api({
 
   test_that("Attributes are as expected.", {
 
+    x <- get_eglv_gauges() |> dplyr::filter(id == "16137")
+
+    meas <- get_eglv_measurements(x, par = "velocity")
+
+    expect_equal(attr(meas[[1]], "STAT_ID"), "16137")
+
+    expect_equal(attr(meas[[1]], "PARAMETER"), "Fließgeschwindigkeit")
+  })
+
+  test_that("Attributes are as expected.", {
+
     y <- get_eglv_gauges() |> dplyr::filter(waterbody == "Hammbach")
 
     meas <- get_eglv_measurements(y)
 
-    expect_equal(attr(meas[[1]], "STAT_ID"), "20017")
+    expect_equal(attr(meas[[1]], "STAT_ID"), "20020")
 
     expect_equal(attr(meas[[1]], "PARAMETER"), "Wasserstand")
 
-    expect_equal(attr(meas[[2]], "STAT_ID"), "20020")
+    expect_equal(attr(meas[[2]], "STAT_ID"), "20017")
 
     expect_equal(attr(meas[[2]], "PARAMETER"), "Wasserstand")
   })

@@ -1,6 +1,6 @@
 Package: NRWgauges
 Title: Web-scraping gauge (meta-)data from various providers in NRW, Germany
-Version: 0.3.9
+Version: 0.3.10
 Date: 2026-01-07
 Authors@R: 
     person("Dimitri", "Falk", , "falk.dimitri@eglv.de", role = c("aut", "cre"))
@@ -17,6 +17,7 @@ Imports:
     httr,
     jsonlite,
     progress,
+    rlang,
     rvest,
     sf,
     stringi,

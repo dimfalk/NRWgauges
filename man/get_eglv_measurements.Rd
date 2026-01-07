@@ -2,28 +2,28 @@
 % Please edit documentation in R/get_eglv_measurements.R
 \name{get_eglv_measurements}
 \alias{get_eglv_measurements}
-\title{Get water level or discharge measurements for selected EGLV gauges}
+\title{Get water level, discharge or velocity measurements for selected EGLV gauges}
 \usage{
-get_eglv_measurements(x = NULL, discharge = FALSE)
+get_eglv_measurements(x = NULL, par = "waterlevel")
 }
 \arguments{
 \item{x}{Sf object containing gauges to be used for subsequent queries,
 as provided by \code{get_eglv_gauges()}.}
 
-\item{discharge}{logical. Retrieve water level or discharge data?}
+\item{par}{character. Parameter to be queried: \code{"waterlevel"}, \code{"discharge"}, or \code{"velocity"}.}
 }
 \value{
 List of xts objects.
 }
 \description{
-Get water level or discharge measurements for selected EGLV gauges
+Get water level, discharge or velocity measurements for selected EGLV gauges
 }
 \examples{
 \dontrun{
 gauge <- get_eglv_gauges() |> dplyr::filter(id == "10103")
 
 get_eglv_measurements(gauge)
-get_eglv_measurements(gauge, discharge = TRUE)
+get_eglv_measurements(gauge, par = "discharge")
 
 gauges <- get_eglv_gauges() |> dplyr::filter(waterbody == "Hammbach")
 
