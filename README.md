@@ -30,7 +30,7 @@ and load the package via
 
 ``` r
 library(NRWgauges)
-#> 0.3.4
+#> 0.3.10
 ```
 
 ## Basic example: EGLV
@@ -41,59 +41,56 @@ library(NRWgauges)
 # fetch all available gauges
 gauges <- get_eglv_gauges()
 gauges
-#> Simple feature collection with 112 features and 12 fields
+#> Simple feature collection with 122 features and 6 fields
 #> Geometry type: POINT
 #> Dimension:     XY
 #> Bounding box:  xmin: 336929 ymin: 5701285 xmax: 433191 ymax: 5733623
 #> Projected CRS: ETRS89 / UTM zone 32N
-#> # A tibble: 112 × 13
-#>    id    name                     waterbody current_trend has_current_waterlevel
-#>    <chr> <chr>                    <chr>     <chr>         <lgl>                 
-#>  1 10104 Econova Allee            Berne     Keine Daten   TRUE                  
-#>  2 10135 E Posener Straße (neu)   Borbecke… Keine Daten   TRUE                  
-#>  3 11038 HRB Borbecker MB, Ablau… Borbecke… Keine Daten   TRUE                  
-#>  4 12036 HRB Borbecker Mühlenbac… Borbecke… Keine Daten   TRUE                  
-#>  5 10085 Nöggerathstraße          Borbecke… Keine Daten   TRUE                  
-#>  6 10140 BOT Gungstraße, Fußgäng… Boye      Keine Daten   TRUE                  
-#>  7 10141 Braukstraße, B224        Boye      Keine Daten   FALSE                 
-#>  8 10139 GLA Brücke Welheimer St… Boye      Keine Daten   TRUE                  
-#>  9 22049 An den Höfen, Hünxe (HR… Bruckhau… Kein Trend    TRUE                  
-#> 10 21119 HÜN HRB Zur alten Mühle… Bruckhau… Keine Daten   TRUE                  
-#> # ℹ 102 more rows
-#> # ℹ 8 more variables: latest_waterlevel_datetime <dttm>,
-#> #   latest_waterlevel_value <dbl>, latest_waterlevel_current_alertlevel <int>,
-#> #   has_current_discharge <lgl>, latest_discharge_datetime <dttm>,
-#> #   latest_discharge_value <dbl>, latest_discharge_current_alertlevel <lgl>,
-#> #   geometry <POINT [m]>
+#> # A tibble: 122 × 7
+#>    id    name             waterbody has_current_waterlevel has_current_discharge
+#>    <chr> <chr>            <chr>     <lgl>                  <lgl>                
+#>  1 10104 Econova Allee    Berne     TRUE                   TRUE                 
+#>  2 10135 E Posener Straß… Borbecke… TRUE                   FALSE                
+#>  3 11038 HRB Borbecker M… Borbecke… TRUE                   FALSE                
+#>  4 12036 HRB Borbecker M… Borbecke… TRUE                   FALSE                
+#>  5 10085 Nöggerathstraße  Borbecke… TRUE                   FALSE                
+#>  6 10140 BOT Gungstraße,… Boye      TRUE                   FALSE                
+#>  7 10141 Braukstraße, B2… Boye      TRUE                   FALSE                
+#>  8 10139 GLA Brücke Welh… Boye      TRUE                   FALSE                
+#>  9 22049 An den Höfen, H… Bruckhau… TRUE                   FALSE                
+#> 10 21119 HÜN HRB Zur alt… Bruckhau… TRUE                   FALSE                
+#> # ℹ 112 more rows
+#> # ℹ 2 more variables: has_current_velocity <lgl>, geometry <POINT [m]>
 
 # ... eventually filter the dataset to the objects you're interested in
 gauge <- gauges |> dplyr::filter(id == "10119")
 gauge
-#> Simple feature collection with 1 feature and 12 fields
+#> Simple feature collection with 1 feature and 6 fields
 #> Geometry type: POINT
 #> Dimension:     XY
 #> Bounding box:  xmin: 367059.8 ymin: 5712147 xmax: 367059.8 ymax: 5712147
 #> Projected CRS: ETRS89 / UTM zone 32N
-#> # A tibble: 1 × 13
-#>   id    name          waterbody current_trend has_current_waterlevel
-#> * <chr> <chr>         <chr>     <chr>         <lgl>                 
-#> 1 10119 Adenauerallee Emscher   Keine Daten   TRUE                  
-#> # ℹ 8 more variables: latest_waterlevel_datetime <dttm>,
-#> #   latest_waterlevel_value <dbl>, latest_waterlevel_current_alertlevel <int>,
-#> #   has_current_discharge <lgl>, latest_discharge_datetime <dttm>,
-#> #   latest_discharge_value <dbl>, latest_discharge_current_alertlevel <lgl>,
-#> #   geometry <POINT [m]>
+#> # A tibble: 1 × 7
+#>   id    name          waterbody has_current_waterlevel has_current_discharge
+#> * <chr> <chr>         <chr>     <lgl>                  <lgl>                
+#> 1 10119 Adenauerallee Emscher   TRUE                   FALSE                
+#> # ℹ 2 more variables: has_current_velocity <lgl>, geometry <POINT [m]>
 ```
 
 ### Get (extended) metadata for selected gauges
 
 ``` r
 get_eglv_meta(gauge)
-#> # A tibble: 1 × 10
-#>   id    name          operator waterbody municipality        X        Y river_km
-#>   <chr> <chr>         <chr>    <chr>     <chr>           <dbl>    <dbl>    <dbl>
-#> 1 10119 Adenauerallee EG       Emscher   Gelsenkirchen 367060. 5712147.     36.4
-#> # ℹ 2 more variables: catchment_area <dbl>, level_zero <dbl>
+#> Simple feature collection with 1 feature and 8 fields
+#> Geometry type: POINT
+#> Dimension:     XY
+#> Bounding box:  xmin: 367059.8 ymin: 5712147 xmax: 367059.8 ymax: 5712147
+#> Projected CRS: ETRS89 / UTM zone 32N
+#> # A tibble: 1 × 9
+#>   id    name  operator waterbody municipality river_km catchment_area level_zero
+#> * <chr> <chr> <chr>    <chr>     <chr>           <dbl>          <dbl>      <dbl>
+#> 1 10119 Aden… EG       Emscher   Gelsenkirch…     36.4           481.       30.8
+#> # ℹ 1 more variable: geometry <POINT [m]>
 ```
 
 ### Get available measurements for selected gauges
@@ -103,27 +100,27 @@ get_eglv_meta(gauge)
 meas <- get_eglv_measurements(gauge)[[1]]
 meas
 #>                     Wasserstand
-#> 2024-10-29 20:25:00          86
-#> 2024-10-29 20:30:00          86
-#> 2024-10-29 20:35:00          86
-#> 2024-10-29 20:40:00          86
-#> 2024-10-29 20:45:00          86
-#> 2024-10-29 20:50:00          86
-#> 2024-10-29 20:55:00          86
-#> 2024-10-29 21:00:00          86
-#> 2024-10-29 21:05:00          86
-#> 2024-10-29 21:10:00          86
+#> 2025-11-09 18:45:00          57
+#> 2025-11-09 18:50:00          57
+#> 2025-11-09 18:55:00          57
+#> 2025-11-09 19:00:00          57
+#> 2025-11-09 19:05:00          57
+#> 2025-11-09 19:10:00          57
+#> 2025-11-09 19:15:00          57
+#> 2025-11-09 19:20:00          57
+#> 2025-11-09 19:25:00          57
+#> 2025-11-09 19:30:00          57
 #>                 ...            
-#> 2024-12-27 19:30:00          83
-#> 2024-12-27 19:35:00          83
-#> 2024-12-27 19:40:00          83
-#> 2024-12-27 19:45:00          83
-#> 2024-12-27 19:50:00          83
-#> 2024-12-27 19:55:00          83
-#> 2024-12-27 20:00:00          83
-#> 2024-12-27 20:05:00          83
-#> 2024-12-27 20:10:00          83
-#> 2024-12-27 20:15:00          83
+#> 2026-01-07 17:55:00          55
+#> 2026-01-07 18:00:00          55
+#> 2026-01-07 18:05:00          55
+#> 2026-01-07 18:10:00          55
+#> 2026-01-07 18:15:00          55
+#> 2026-01-07 18:20:00          55
+#> 2026-01-07 18:25:00          55
+#> 2026-01-07 18:30:00          55
+#> 2026-01-07 18:35:00          55
+#> 2026-01-07 18:40:00          56
 
 class(meas)
 #> [1] "xts" "zoo"
@@ -131,4 +128,4 @@ class(meas)
 plot(meas, main = "10119 Adenauerallee", ylab = "Water level [cm]")
 ```
 
-<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-5-1.png" alt="" width="100%" />

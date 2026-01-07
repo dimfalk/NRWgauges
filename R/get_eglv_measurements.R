@@ -109,7 +109,7 @@ get_eglv_measurements <- function(x = NULL,
                                          tz = "etc/GMT-1"))
 
     # fix name
-    names(meas) <- par
+    names(meas) <- par_ger
 
     # add meta data
     meta <- get_eglv_meta(x_subset[i, ])
