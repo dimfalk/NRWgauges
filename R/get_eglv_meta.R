@@ -70,7 +70,11 @@ get_eglv_meta <- function(x = NULL) {
     # keys
     # stringr::str_split_i(a, pattern = ": ", i = 1)
 
+    # values
     vals <- stringr::str_split_i(a, pattern = ": ", i = 2)
+
+    # tidy: None -> NA
+    vals[vals == "None"] <- NA
 
     meta["id"] <- vals[2]
     meta["name"] <- vals[1]
