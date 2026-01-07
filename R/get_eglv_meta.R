@@ -3,7 +3,7 @@
 #' @param x Sf object containing gauges to be used for subsequent queries,
 #'     as provided by `get_eglv_gauges()`.
 #'
-#' @return Tibble containing metadata.
+#' @return Sf object.
 #' @export
 #'
 #' @seealso [get_eglv_gauges()]
@@ -67,7 +67,8 @@ get_eglv_meta <- function(x = NULL) {
       rvest::html_elements("li") |>
       rvest::html_text()
 
-    keys <- stringr::str_split_i(a, pattern = ": ", i = 1)
+    # keys
+    # stringr::str_split_i(a, pattern = ": ", i = 1)
 
     vals <- stringr::str_split_i(a, pattern = ": ", i = 2)
 
@@ -96,6 +97,9 @@ get_eglv_meta <- function(x = NULL) {
 
     pb$tick()
   }
+
+  # return as sf
+  meta_all <- sf::st_as_sf(meta_all, coords = c("X", "Y"), crs = "epsg:25832")
 
   meta_all
 }

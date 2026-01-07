@@ -11,7 +11,7 @@ get_eglv_meta(x = NULL)
 as provided by \code{get_eglv_gauges()}.}
 }
 \value{
-Tibble containing metadata.
+Sf object.
 }
 \description{
 Get (extended) metadata for selected EGLV gauges

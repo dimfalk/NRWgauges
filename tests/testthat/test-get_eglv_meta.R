@@ -6,7 +6,7 @@ with_mock_api({
 
     meta <- get_eglv_meta(x)
 
-    expect_s3_class(meta, c("tbl_df", "tbl", "data.frame"))
+    expect_s3_class(x, c("sf", "tbl_df", "tbl", "data.frame"))
   })
 
   test_that("Output class is as expected.", {
@@ -15,7 +15,7 @@ with_mock_api({
 
     meta <- get_eglv_meta(y)
 
-    expect_s3_class(meta, c("tbl_df", "tbl", "data.frame"))
+    expect_s3_class(y, c("sf", "tbl_df", "tbl", "data.frame"))
   })
 
   test_that("Dimensions are as expected.", {
@@ -24,7 +24,7 @@ with_mock_api({
 
     meta <- get_eglv_meta(x)
 
-    expect_equal(dim(meta), c(1, 10))
+    expect_equal(dim(meta), c(1, 9))
   })
 
   test_that("Dimensions are as expected.", {
@@ -33,13 +33,13 @@ with_mock_api({
 
     meta <- get_eglv_meta(y)
 
-    expect_equal(dim(meta), c(2, 10))
+    expect_equal(dim(meta), c(2, 9))
   })
 
   test_that("Column names are as expected.", {
 
-    cnames <- c("id", "name", "operator", "waterbody", "municipality", "X", "Y",
-                "river_km", "catchment_area", "level_zero")
+    cnames <- c("id", "name", "operator", "waterbody", "municipality",
+                "river_km", "catchment_area", "level_zero", "geometry")
 
     x <- get_eglv_gauges() |> dplyr::filter(id == "10103")
 
@@ -51,7 +51,7 @@ with_mock_api({
   test_that("Types are as expected.", {
 
     dtype <- c("character", "character", "character", "character", "character",
-               "double", "double", "double", "double", "double")
+               "double", "double", "double", "list")
 
     x <- get_eglv_gauges() |> dplyr::filter(id == "10103")
 

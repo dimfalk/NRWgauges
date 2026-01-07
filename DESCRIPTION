@@ -1,6 +1,6 @@
 Package: NRWgauges
 Title: Web-scraping gauge (meta-)data from various providers in NRW, Germany
-Version: 0.3.7
+Version: 0.3.8
 Date: 2026-01-07
 Authors@R: 
     person("Dimitri", "Falk", , "falk.dimitri@eglv.de", role = c("aut", "cre"))
@@ -9,7 +9,7 @@ Description: Granting easy access to gauge (meta-)data published on distributed
 License: AGPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Depends: R (>= 4.2.0)
 Imports: 
     checkmate,
